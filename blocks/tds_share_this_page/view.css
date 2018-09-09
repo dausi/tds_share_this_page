@@ -1,0 +1,105 @@
+.ccm-block-share-this-page  {
+	display: inline-flex;
+}
+.ccm-block-share-this-page ul.list-inline {
+	display: inline-block;
+	line-height: 1.6em;
+    max-height: 1.6em;
+	margin: 0px;
+}
+.ccm-block-share-this-page ul.list-inline li {
+	padding: 0px;
+	list-style-type: none;
+	margin: 0;
+}
+.ccm-block-share-this-page ul.list-inline li div.svc {
+	cursor: pointer;
+	width: 1.6em;
+    height: 1.6em;
+    border-radius: 0.8em;
+    float: left;
+}
+.ccm-block-share-this-page ul.list-inline li div.svc.activated {
+    background-color: red;
+}
+.ccm-block-share-this-page ul.list-inline li div.svc i {
+	left: -1px;
+    position: relative;
+	text-align: center;
+	width: 1.6em
+}
+
+.speech-bubble {
+    background: #fff;
+	border: 1px solid gray;
+    border-radius: 4px;
+	color: initial;
+	display: none;
+    padding: 10px;
+    position: relative;
+	text-align: left;
+    width: 300px;
+	z-index: 10;
+}
+.ccm-block-share-this-page ul.list-inline li div.svc.activated .speech-bubble {
+	display: block;
+}
+.speech-bubble:before, .speech-bubble:after {
+	content: ' ';
+	border-style: solid;
+	position: absolute;
+	width: 0;
+	height: 0;
+}
+.speech-bubble:before {
+	border-color: gray transparent transparent transparent;
+	bottom: -64px;
+	border-width: 32px 12px;
+	left: calc(50% - 10px);
+}
+.speech-bubble:after {
+	border-color: white transparent transparent transparent;
+    bottom: -60px;
+	border-width: 30px 10px;
+	left: calc(50% - 8px);
+}
+.speech-bubble.left:before, .speech-bubble.right:before {
+	border-width: 16px 12px;
+	bottom: -32px;
+}
+.speech-bubble.left:after, .speech-bubble.right:after {
+	border-width: 15px 10px;
+    bottom: -30px;
+}
+.speech-bubble.left:before {
+	border-color: gray transparent transparent gray;
+	left: 29px;
+}
+.speech-bubble.left:after {
+	border-color: white transparent transparent white;
+    left: 30px;
+}
+.speech-bubble.right:before {
+	border-color: gray gray transparent transparent;
+	left: auto;
+	right: 29px;
+}
+.speech-bubble.right:after {
+	border-color: white white transparent transparent;
+	left: auto;
+    right: 30px;
+}
+.speech-bubble input[type=checkbox] {
+	cursor: pointer;
+	float: left;
+}
+.speech-bubble label {
+	cursor: pointer;
+	display: block;
+	font-size: 12px;
+	font-weight: inherit;
+	line-height: initial;
+	margin-left: 20px;
+	position: relative;
+	top: 2px;
+}

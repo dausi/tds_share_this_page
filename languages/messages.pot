@@ -1,0 +1,73 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tds_share_this_page 0.9.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2018-09-05T16:30:23+02:00\n"
+"PO-Revision-Date: 2018-09-05T16:30:24+02:00\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: packages/tds_share_this_page/controller.php:23
+msgid "Add EU-GDPR compliant two-click social link share buttons to your page"
+msgstr ""
+
+#: packages/tds_share_this_page/controller.php:28
+msgid "TDS Share This Page"
+msgstr ""
+
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:30
+msgid "Allows users to share this page with social networks."
+msgstr ""
+
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:35
+msgid "Share This Page"
+msgstr ""
+
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:89
+msgid "You must choose at least one service."
+msgstr ""
+
+#: packages/tds_share_this_page/blocks/tds_share_this_page/form.php:5
+msgid "Add Service"
+msgstr ""
+
+#: packages/tds_share_this_page/blocks/tds_share_this_page/form.php:6
+msgid "Services"
+msgstr ""
+
+#: packages/tds_share_this_page/blocks/tds_share_this_page/form.php:18
+msgid "Choose Sharing Service"
+msgstr ""
+
+#: packages/tds_share_this_page/blocks/tds_share_this_page/view.php:14
+msgid "You now have enabled the social share button to &quot;%s&quot;. Next time you click at the button the social share page shall be opened. On opening personal browser data is transmitted to the social media provider. To avoid this you can disblae the checkbox at left (and the enabled button)."
+msgstr ""
+
+#: packages/tds_share_this_page/src/Service.php:57
+msgid ""
+"Check out this article on %s:\n"
+"\n"
+"%s\n"
+"%s"
+msgstr ""
+
+#: packages/tds_share_this_page/src/Service.php:58
+msgid "Thought you'd enjoy this article."
+msgstr ""
+
+#: packages/tds_share_this_page/src/ServiceList.php:22
+msgid "Print this page"
+msgstr ""
+
+#: packages/tds_share_this_page/src/ServiceList.php:24
+msgid "Send page recommendation by email"
+msgstr ""
+
+#: packages/tds_share_this_page/src/ServiceList.php:26
+msgid "Share this page at %s"
+msgstr ""
