@@ -1,6 +1,26 @@
-# tds_share_this_page
-The concrete5 built in soical media *Share This Page* buttons do lack the full control over personal data: if you click at a conventional share button without explicit intention there is no way to pull back. The social provider page is opened and your personal browser data consumed by the service provider.
+# Add-on tds_share_this_page
 
-The **TDS Share This Page** solution puts a dialog in between clicking at a *Share This Page* button and the provider page opening... EU-GDPR compliance is established!
+This add-on lets you add social media "share this page at..." icons on your pages. This add-on is ment to replace the standard concrete5 social share add-on.
 
-**TDS Share This Page** was built from concrete5 built in social media *Share This Page* buttons and utilizes the same database table.
+Localization is available for de_DE, feel free to add more.
+
+## Highlights
+
+* uses FontAwesome brand icons
+* choice of colors, hover, sizes, styles and horizontal align
+* drag and drop ordering of icons
+* EU-GDPR compliant two-clicks solution
+* choice of salutation (personal/formal)
+
+## Social media services supported
+
+* Facebook
+* Google+
+* Linkedin
+* Pinterest
+* Reddit
+* Tumblr
+* Twitter
+* Xing
+* Email (local service)
+* Print (local service)
