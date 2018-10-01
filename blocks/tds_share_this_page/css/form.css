@@ -1,8 +1,8 @@
 @CHARSET "ISO-8859-1";
-div.ccm-ui ul.nav-tabs {
+div.ccm-block-share-this-page ul.nav-tabs {
 	padding-top: 10px;
 }
-div.ccm-ui .ccm-tab-content {
+div.ccm-block-share-this-page .ccm-tab-content {
     padding-top: 10px;
 }
 .form-group.half {
@@ -55,34 +55,34 @@ div.ccm-ui .ccm-tab-content {
 	box-shadow: 0px 10px 18px 2px rgba(54,55,66,0.27);
 	border: 1px solid #ccc !important;
 }
-.ccm-ui .form-control, .ccm-ui .social-icon {
+.ccm-block-share-this-page .form-control, .ccm-block-share-this-page .social-icon {
 	cursor: pointer;
 }
-.ccm-ui label.control-label {
+.ccm-block-share-this-page label.control-label {
     padding: 9px;
     margin: 0;
 }
-.ccm-ui .lineup {
+.ccm-block-share-this-page .lineup {
 	padding: 15px 0 5px;
 }
-.ccm-ui .lineup label {
+.ccm-block-share-this-page .lineup label {
 	display: inline;
 }
-.ccm-ui .sp-replacer {
+.ccm-block-share-this-page .sp-replacer {
 	background-color: transparent;
 	border-color: #dedede;
 	padding: 8px;
 	width: 100%;
 }
-.ccm-ui .sp-preview {
+.ccm-block-share-this-page .sp-preview {
 	border-color: #dedede;
 	height: 22px;
 	width: calc(100% - 32px);
 }
-.ccm-ui .sp-dd {
+.ccm-block-share-this-page .sp-dd {
 	visibility: hidden;
 }
-.ccm-ui .sp-dd:before {
+.ccm-block-share-this-page .sp-dd:before {
 	content: '\f078'; /* chevron down */
 	font-family: FontAwesome;
 	font-size: 16px;
@@ -91,34 +91,52 @@ div.ccm-ui .ccm-tab-content {
 	visibility: visible;
 }
 
-div.ui-dialog .ui-dialog-content div.form-group {
+.ccm-block-share-this-page button.edit {
+	width: 100%;
+}
+.ccm-block-share-this-page .bubbletext {
+	position: relative;
+}
+.ccm-block-share-this-page .bubbletext .input-group {
+	background: #eaf7ff;
+	border: 1px solid #ddd;
+	padding: 15px;
+	position: absolute;
+	right: -2px;
+	top: -23px;
+	width: 586px;
+	z-index: 10;
+}
+.ccm-block-share-this-page .bubbletext .input-group div.ta {
+	display: flex;
+	padding-bottom: 15px;
+}
+.ccm-block-share-this-page .bubbletext .input-group textarea {
+	height: 200px;
+}
+.ccm-block-share-this-page div.ui-dialog .ui-dialog-content div.form-group {
 	/* for c5-5.7 */
 	padding-left: 26px;
 	padding-right: 26px;
 	margin-left: -26px;
 	margin-right: -26px;
 }
-#ccm-tab-content-colorstyle div.form-group {
+#ccm-tab-content-colorstyle.ccm-block-share-this-page div.form-group {
 	height: 100%;
 	width: calc(50% + 21px);
 }
-#ccm-tab-content-colorstyle ul {
+#ccm-tab-content-colorstyle.ccm-block-share-this-page  ul {
 	background-color: #f8f8f8;
-	height: 100%;
+	height: 440px;
 	padding: 0;
 }
-#ccm-tab-content-colorstyle li.icon-box {
+#ccm-tab-content-colorstyle.ccm-block-share-this-page  li.icon-box {
 	list-style-image: none;
 	display: block;
 }
-#icon-set-container {
+#icon-set-container.ccm-block-share-this-page  {
 	padding-right: 8px;
 }
-#icon-preview-container {
+#icon-preview-container.ccm-block-share-this-page  {
 	padding-left: 8px;
-}
-#iconMarginError {
-	display: none;
-	padding: 10px;
-    margin-top: 10px;
 }

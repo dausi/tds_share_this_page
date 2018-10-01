@@ -8,7 +8,8 @@
     </field>
     <field name="linkTarget" type="C"/>
     <field name="align" type="C"/>
-    <field name="titleType" type="C"/>
+    <field name="titleText" type="C"/>
+    <field name="bubbleText" type="X"/>
     <field name="iconShape" type="C"/>
     <field name="iconStyle" type="C"/>
     <field name="iconColor" type="C"/>

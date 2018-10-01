@@ -3,7 +3,6 @@ namespace Concrete\Package\TdsShareThisPage\Block\TdsShareThisPage;
 
 use Concrete\Core\Block\BlockController;
 use Config;
-use Request;
 
 class Controller extends BlockController
 {
@@ -13,18 +12,32 @@ class Controller extends BlockController
     protected $btTable = 'btTdsShareThisPage';
     protected $btDefaultSet = 'social';
 
-    protected $iconStyles = '
-		.ccm-block-share-this-page .icon-container .svc.activated span { %activeAttrs% }
-		.ccm-block-share-this-page .social-icon:hover { %hoverAttrs% }
-		.ccm-block-share-this-page .social-icon.activated, .ccm-block-share-this-page .social-icon.activated:hover { %activeAttrs% }
-		.ccm-block-share-this-page .social-icon {	float: left; margin: 0 calc(%iconMargin%px / 2);
-													height: %iconSize%px; width: %iconSize%px; border-radius: %borderRadius%px; }
-		.ccm-block-share-this-page .social-icon i.fa {	display: block;
-					font-size: calc(%iconSize%px *.6); text-align: center; width: 100%; padding-top: calc((100% - 1em) / 2); }
+	protected $iconStyles = '
+		.ccm-block-share-this-page.block-%b% .icon-container .svc.activated span { %activeAttrs% }
+		.ccm-block-share-this-page.block-%b% .social-icon:hover { %hoverAttrs% }
+		.ccm-block-share-this-page.block-%b% .social-icon-color { color: #f8f8f8; background: %iconColor%; }
+		.ccm-block-share-this-page.block-%b% .social-icon-color-inverse { color: %iconColor%; }
+		.ccm-block-share-this-page.block-%b% .social-icon.activated, .ccm-block-share-this-page .social-icon.activated:hover { %activeAttrs% }
+		.ccm-block-share-this-page.block-%b% .social-icon {	float: left; margin: 0 calc(%iconMargin%px / 2);
+															height: %iconSize%px; width: %iconSize%px; border-radius: %borderRadius%px; }
+		.ccm-block-share-this-page.block-%b% .social-icon i.fa { display: block; font-size: calc(%iconSize%px *.6); text-align: center; 
+																 width: 100%; padding-top: calc((100% - 1em) / 2); }
 	';
-	protected $titleType = 'personal';
+	protected $mediaList = [];
+	protected $bUID = 0;
 
-    public function getBlockTypeDescription()
+	public function getBlockUID($b = null)
+	{
+		$bUID = $this->bID;
+        if ($b != null)
+		{
+			$proxyBlock = $b->getProxyBlock();
+			$bUID = $proxyBlock ? $proxyBlock->getBlockID() : $b->bID;
+		}
+		return $bUID;
+    }
+
+	public function getBlockTypeDescription()
     {
         return t('Add EU-GDPR compliant FontAwesome social media share icons on your pages.');
     }
@@ -38,7 +51,6 @@ class Controller extends BlockController
     {
 		$this->set('linkTarget', '_self');
 		$this->set('align', 'left');
-		$this->set('titleType', $this->titleType);
 		$this->set('iconStyle', 'logo');
 		$this->set('iconSize', '20');
 		$this->set('iconMargin', '0');
@@ -57,16 +69,17 @@ class Controller extends BlockController
 	        'left'	=> t('left'),
 	        'right'	=> t('right'),
         ]);
-		$this->set('titleTypeList', [
-	        'personal'	=> t('Share this page at... (personal)'),
-	        'formal'	=> t('Share this page at... (formal)'),
-        ]);
 		$this->set('iconStyleList', [
 			'logo'			=> t('logo'),
 			'logo-inverse'	=> t('logo inverse'),
 			'color'			=> t('color'),
 			'color-inverse'	=> t('color inverse')
 		]);
+		$this->set('titleTextTemplate', t('Share this page at %s'));
+		$this->set('bubbleTextTemplate', t('You now have enabled the button to share this page at "%s".'.
+									' Next time you click at the button the page at "%s" shall be opened.'.
+									' On opening your personal browser data is transmitted to the provider "%s".'.
+									' To avoid this you can disable the checkbox at left (and the enabled button).'));
 
 		$this->view();
     }
@@ -77,7 +90,7 @@ class Controller extends BlockController
 		{	// add from clipboard --> is array already
 			$this->mediaList = unserialize($this->mediaList);
 		}
-    	$this->genIcons();
+		$this->setupMediaList();
     	$this->set('mediaList', $this->mediaList);
 	}
 
@@ -90,20 +103,21 @@ class Controller extends BlockController
         parent::save($args);
     }
 
-    public function getIconStyles()
+    public function getIconStyles($bUID)
     {
-    	return $this->iconStyles;
-    }
+    	return str_replace(	'%b%', $bUID, $this->iconStyles );
+	}
 
-    public function getIconStylesExpanded()
+    public function getIconStylesExpanded($bUID)
     {
+		$this->bUID = $bUID;
     	$borderRadius = $this->iconShape == 'round' ? $this->iconSize / 2: 0;
 		$hoverAttrs = $this->hoverIcon != '' ? "background: $this->hoverIcon;" : '';
 		$activeAttrs = $this->activeIcon != '' ? "background-color: $this->activeIcon;" : '';
 		return '
-<style id="iconStyles" type="text/css">
-	'. str_replace(	['%iconMargin%',    '%iconSize%',    '%borderRadius%', '%hoverAttrs%',	'%activeAttrs%'	],
-					[ $this->iconMargin, $this->iconSize, $borderRadius,    $hoverAttrs,	 $activeAttrs	], $this->iconStyles ). '
+<style id="iconStyles-' . $bUID . '" type="text/css">
+	'. str_replace(	['%b%',	'%iconColor%',    '%iconMargin%',    '%iconSize%',    '%borderRadius%', '%hoverAttrs%', '%activeAttrs%'	],
+					[ $bUID, $this->iconColor, $this->iconMargin, $this->iconSize, $borderRadius,    $hoverAttrs,     $activeAttrs	], $this->iconStyles ). '
 </style>';
     }
 
@@ -112,11 +126,11 @@ class Controller extends BlockController
     	return $this->mediaList;
     }
 
-    private function genIcons()
+    private function setupMediaList()
     {
-		$req = Request::getInstance();
-		$url = urlencode($req->getUri());
 		$app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
+		$req = $app->make(\Concrete\Core\Http\Request::class);
+		$url = urlencode($req->getUri());
 		
     	$concrete = Config::get('concrete');
     	$version = intval(substr($concrete['version_installed'], 0, 1));
@@ -158,16 +172,11 @@ class Controller extends BlockController
 
 		$colors = strpos($this->iconStyle, 'logo') === FALSE;
 		$inverse = strpos($this->iconStyle,'inverse') !== FALSE;
-		if ($colors)
-		{
-			$this->iconStyles .= '	.ccm-block-share-this-page .social-icon-color { color: #f8f8f8; background: '. $this->iconColor .'; }'."\n";
-			$this->iconStyles .= '	.ccm-block-share-this-page .social-icon-color-inverse { color: '. $this->iconColor .'; }'."\n";
-		}
-
+		$blockClass = '	.ccm-block-share-this-page.block-%b%';
 		foreach ($mediaListMaster as $key => $mProps)
     	{
-			$this->iconStyles .= '	.ccm-block-share-this-page .social-icon-' . $key . ' { color: #ffffff; background: ' . $mProps['icolor'] . '; }'."\n";
-			$this->iconStyles .= '	.ccm-block-share-this-page .social-icon-' . $key . '-inverse { color: ' . $mProps['icolor'] . '; }'."\n";
+			$this->iconStyles .= $blockClass . ' .social-icon-' . $key . ' { color: #ffffff; background: ' . $mProps['icolor'] . '; }'."\n";
+			$this->iconStyles .= $blockClass . ' .social-icon-' . $key . '-inverse { color: ' . $mProps['icolor'] . '; }'."\n";
 			$iconClass = 'social-icon  social-icon-';
 			$iconClass .= $colors ? 'color' : $key;
 			$iconClass .= $inverse ? '-inverse' : '';
@@ -177,7 +186,7 @@ class Controller extends BlockController
 				$this->mediaList[$key] = [];
 			}
 			$props = $this->mediaList[$key];
-			$title = t('Share this page at %s.', $key);
+			$title = h(str_replace('%s', $key, $this->titleText));
 			if ( $key == 'Print' || $key == 'Mail' )
 			{
 				$title = $key == 'Print' ? t('Print this page') : t('Share this page by email');

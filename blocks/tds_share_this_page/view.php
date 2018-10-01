@@ -1,19 +1,11 @@
 <?php defined('C5_EXECUTE') or die('Access Denied.');
 
-echo $this->controller->getIconStylesExpanded();
+$bUID = $controller->getBlockUID($b);
+echo $this->controller->getIconStylesExpanded($bUID);
 
-$bubbleText = $titleType == 'personal'
-				? t('You now have enabled the button to share this page at "%s". ' .
-				  'Next time you click at the button the page at "%s" shall be opened. ' .
-				  'On opening your personal browser data is transmitted to the provider "%s". ' .
-				  'To avoid this you can disable the checkbox at left (and the enabled button).')
-				: t('You now have enabled the button to share this page at "%s". ' .
-				  'Next time you click at the button the page at "%s" shall be opened. ' .
-				  'On opening personal browser data is transmitted to the provider "%s". ' .
-				  'To avoid this you can disable the checkbox at left (and the enabled button).');
 ?>
 
-<div class="ccm-block-share-this-page">
+<div class="ccm-block-share-this-page block-<?php echo $bUID ?>">
 	<div class="icon-container <?php echo $align ?>-align">
 
 <?php
@@ -24,8 +16,8 @@ foreach ($this->controller->getMediaList() as $key => $props)
 }
 ?>
 		<div class="speech-bubble">
-			<input type="checkbox" checked="checked" id="bubble-<?php echo $bID ?>">
-			<label for="bubble-<?php echo $bID ?>">
+			<input type="checkbox" checked="checked" id="bubble-<?php echo $bUID ?>">
+			<label for="bubble-<?php echo $bUID ?>">
 			</label>
 			<span class="arrow"></span><span class="arrow-inner"></span>
 		</div>
@@ -33,9 +25,9 @@ foreach ($this->controller->getMediaList() as $key => $props)
 </div>
 <script type="text/javascript">
 (function($) {
-	var $allButtons = $( '.ccm-block-share-this-page .svc span' );
-	var $bubble = $( '.ccm-block-share-this-page .speech-bubble' );
-	var bubbleText = '<?php echo $bubbleText ?>';
+	var $allButtons = $( '.ccm-block-share-this-page.block-<?php echo $bUID ?> .svc span' );
+	var $bubble = $( '.ccm-block-share-this-page.block-<?php echo $bUID ?> .speech-bubble' );
+	var bubbleText = '<?php echo h($bubbleText) ?>';
 	/*
 	 * button click handler
 	 */

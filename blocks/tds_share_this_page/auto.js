@@ -60,7 +60,7 @@
 				v = $( '#ccm-colorpicker-activeIcon' ).val();
 				var actAtts = v !== '' ? ( 'background: ' + v ) : '';
 				var iCv = $( '#ccm-colorpicker-iconColor' ).val();
-				$( 'style#iconStyles' ).html(
+				$( 'style#iconStyles-0' ).html(
 					iconStyles
 						.replace( /%iconColor%/g,		iCv === '' ? 'transparent' : iCv )
 						.replace( /%iconMargin%/g,		$( '#iconMargin' ).val() )
