@@ -1,5 +1,4 @@
-/* global ConcreteAlert */
-/* global tds_share_messages */
+/* global ConcreteAlert, tds_share_messages */
 /**
  *  @argument {window.jQuery} $
  */

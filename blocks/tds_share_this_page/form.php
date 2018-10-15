@@ -164,7 +164,6 @@ echo '
 			/*
 			 * undo bubbleText edit modal
 			 */
-console.log('f');
 			$( 'button.undo' ).click( function() {
 				$( this ).parent()
 					.find( 'textarea' )

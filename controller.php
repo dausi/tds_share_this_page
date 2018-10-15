@@ -6,11 +6,8 @@
  */
 namespace Concrete\Package\TdsShareThisPage;
 
-use Package;
-use BlockType;
-use Events;
-use AssetList;
-use View;
+use Concrete\Core\Package\Package;
+use Concrete\Core\Block\BlockType\BlockType;
 
 /*
  * FontAwesome Social Media "Share" Icons by Thomas Dausner (aka dausi)
@@ -26,7 +23,7 @@ class Controller extends Package
 
 	protected $pkgHandle = 'tds_share_this_page';
     protected $appVersionRequired = '5.7.5.6';
-	protected $pkgVersion = '0.9.3';
+	protected $pkgVersion = '0.9.4';
 
 	public function getPackageName()
 	{
@@ -53,33 +50,4 @@ class Controller extends Package
 		$pkg = parent::uninstall();
  	}
 
-	public function on_start()
-	{
-		Events::addListener('on_before_render', function($event) {
-
-			$al = AssetList::getInstance();
-			$ph = $this->pkgHandle;
-
-			$al->register('css', $ph.'/form', 'blocks/'.$ph.'/css/form.css', [], $ph);
-			$al->registerGroup($ph, [
-				['css', $ph.'/form'],
-			]);
-
-			$v = View::getInstance();
-			$v->requireAsset($ph);
-			$v->requireAsset('css', 'font-awesome');
-
-			$script_tag = '<script type="text/javascript">var tds_share_messages = ' . json_encode($this->getMessages()) . '</script>';
-			$v->addFooterItem($script_tag);
-		});
-	}
-
-	public function getMessages()
-	{
-		return [
-			'no_svc_selected'		=> \t('No social media service selected.'),
-			'iconmargin_invalid'	=> \t('Icon spacing "%s" is not a valid number'),
-		];
-	}
-	
 }

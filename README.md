@@ -10,7 +10,7 @@ Localization is available for de_DE, feel free to add more.
 * choice of colors, hover, sizes, styles and horizontal align
 * drag and drop ordering of icons
 * EU-GDPR compliant two-clicks solution
-* editable messages
+* choice of salutation (personal/formal)
 
 ## Social media services supported
 
