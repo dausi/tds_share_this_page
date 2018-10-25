@@ -1,6 +1,5 @@
 <?php defined('C5_EXECUTE') or die('Access Denied.');
 
-$bUID = $controller->getBlockUID($b);
 echo $this->controller->getIconStylesExpanded($bUID);
 
 ?>
@@ -28,10 +27,29 @@ foreach ($this->controller->getMediaList() as $key => $props)
 	var $allButtons = $( '.ccm-block-share-this-page.block-<?php echo $bUID ?> .svc span' );
 	var $bubble = $( '.ccm-block-share-this-page.block-<?php echo $bUID ?> .speech-bubble' );
 	var bubbleText = '<?php echo h($bubbleText) ?>';
+	var button_activated = false;
+	/*
+	 * close all buttons handler
+	 * 
+	 * @returns {undefined}
+	 */
+	$( 'body' ).click( function() {
+		if ( button_activated ) {
+			$allButtons.removeClass( 'activated' );
+			$bubble.hide();
+			button_activated = false;
+		}
+	});
+	$( $bubble ).click( function( e ) {
+		e.stopPropagation();
+	});
 	/*
 	 * button click handler
+	 * 
+	 * @returns {undefined}
 	 */
-	$allButtons.click( function() {
+	$allButtons.click( function( e ) {
+		e.stopPropagation();
 		var $btn = $( this );
 		if ( $btn.hasClass( 'local' ) ) {
 			window.open( $btn.data( 'href' ), '_self' );
@@ -40,13 +58,14 @@ foreach ($this->controller->getMediaList() as $key => $props)
 				window.open( $btn.data( 'href' ), $btn.data( 'target' ) );
 			$btn.removeClass( 'activated' );
 			$bubble.hide();
+			button_activated = false;
 		} else {
 			// activate just clicked button
 			$allButtons.removeClass( 'activated' );
 			$btn.addClass( 'activated' );
 			// set bubble text, check box and set check box change handler
 			$( 'label', $bubble).html( bubbleText.replace( /%s/g,  $btn.data( 'key' ) ) );
-						$( 'input', $bubble )
+			$( 'input', $bubble )
 				.prop( 'checked', true )
 				.change( function() {
 					$btn.removeClass( 'activated' );
@@ -93,7 +112,9 @@ foreach ($this->controller->getMediaList() as $key => $props)
 			$( 'span', $bubble ).css({
 				'left': arrowOffs + 'px'
 			});
+			button_activated = true;
 		}
 	});
+	
 })(window.jQuery);
 </script>

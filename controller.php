@@ -10,12 +10,10 @@ use Concrete\Core\Package\Package;
 use Concrete\Core\Block\BlockType\BlockType;
 
 /*
- * FontAwesome Social Media "Share" Icons by Thomas Dausner (aka dausi)
+ * FontAwesome (not image) based Social Media "Share" Icons
  *
- * based on:
- *
- * FontAwesome Social Media "Vist" Icons by Thomas Dausner (aka dausi)
- * more credits see that add-on.
+ * developed from: 
+ * FontAwesome based Social Media "Vist" Icons
  */
 
 class Controller extends Package
@@ -23,7 +21,7 @@ class Controller extends Package
 
 	protected $pkgHandle = 'tds_share_this_page';
     protected $appVersionRequired = '5.7.5.6';
-	protected $pkgVersion = '0.9.4';
+	protected $pkgVersion = '0.9.5';
 
 	public function getPackageName()
 	{

@@ -38,13 +38,13 @@
 }
 .ccm-block-share-this-page .speech-bubble span.arrow {
 	border-color: gray transparent transparent transparent;
-	bottom: -64px;
-	border-width: 32px 12px;
+	bottom: -32px;
+	border-width: 32px 12px 0;
 }
 .ccm-block-share-this-page .speech-bubble span.arrow-inner {
 	border-color: white transparent transparent transparent;
-    bottom: -59px;
-	border-width: 30px 10px;
+    bottom: -30px;
+	border-width: 30px 10px 0;
 	margin-left: 2px;
 }
 .ccm-block-share-this-page .speech-bubble.left span.arrow,

@@ -33,17 +33,6 @@ class Controller extends BlockController
 	protected $mediaList = [];
 	protected $bUID = 0;
 
-	public function getBlockUID($b = null)
-	{
-		$bUID = $this->bID;
-        if ($b != null)
-		{
-			$proxyBlock = $b->getProxyBlock();
-			$bUID = $proxyBlock ? $proxyBlock->getBlockID() : $b->bID;
-		}
-		return $bUID;
-    }
-
 	public function getBlockTypeDescription()
     {
         return t('Add EU-GDPR compliant social media "Share this page" icons on your pages.');
@@ -59,7 +48,10 @@ class Controller extends BlockController
 		$this->set('linkTarget', '_self');
 		$this->set('align', 'left');
 		$this->set('iconStyle', 'logo');
+		$this->set('iconColor', '#00f');	/* blue */
 		$this->set('iconSize', '20');
+		$this->set('hoverIcon', '#ccc');	/* pale gray */
+		$this->set('activeIcon', '#ff0');	/* yellow */
 		$this->set('iconMargin', '0');
 		$this->edit();
     }
@@ -113,8 +105,13 @@ class Controller extends BlockController
 		{	// add from clipboard --> is array already
 			$this->mediaList = unserialize($this->mediaList);
 		}
+		$this->app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
 		$this->setupMediaList();
     	$this->set('mediaList', $this->mediaList);
+		$this->set('bUID', $this->app->make('helper/validation/identifier')->getString(8));
+		
+		$this->requireAsset('font-awesome');
+	    $this->requireAsset('javascript', 'jquery');
 	}
 
 	public function save($args)
@@ -151,11 +148,10 @@ class Controller extends BlockController
 
     private function setupMediaList()
     {
-		$app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
-		$req = $app->make(\Concrete\Core\Http\Request::class);
+		$req = $this->app->make(\Concrete\Core\Http\Request::class);
 		$url = urlencode($req->getUri());
 		
-		$sitename = version_compare(APP_VERSION, '8.0', '>=') ? $app->make('site')->getSite()->getSiteName() : Config::get('concrete.site');
+		$sitename = version_compare(APP_VERSION, '8.0', '>=') ? $this->app->make('site')->getSite()->getSiteName() : Config::get('concrete.site');
 
 		$c = $req->getCurrentPage();
         if (is_object($c) && !$c->isError()) {
