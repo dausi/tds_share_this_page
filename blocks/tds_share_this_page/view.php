@@ -92,6 +92,12 @@ foreach ($this->controller->getMediaList() as $key => $props)
 			while ( i * 100 <= arrowOffs ) {
 				i++;
 			}
+			i = (i > 3) ? 3 : i;
+			if ( arrowOffs > 260 ) {
+				var delta = arrowOffs - 260;
+				bbLeft += delta;
+				arrowOffs -= delta;
+			}
 			// set/show bubble and arrow
 			$bubble
 				.addClass( arrow[ i - 1 ] )
