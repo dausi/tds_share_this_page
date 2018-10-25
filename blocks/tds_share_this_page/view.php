@@ -51,18 +51,20 @@ foreach ($this->controller->getMediaList() as $key => $props)
 	$allButtons.click( function( e ) {
 		e.stopPropagation();
 		var $btn = $( this );
-		$allButtons.removeClass( 'activated' );
 		if ( $btn.hasClass( 'local' ) ) {
 			window.open( $btn.data( 'href' ), '_self' );
+			$allButtons.removeClass( 'activated' );
 			$bubble.hide();
 			button_activated = false;
 		} else if ( $btn.hasClass( 'activated' ) ) {
 			if ( $( 'input', $bubble ).prop( 'checked' ) )
 				window.open( $btn.data( 'href' ), $btn.data( 'target' ) );
+			$allButtons.removeClass( 'activated' );
 			$bubble.hide();
 			button_activated = false;
 		} else {
 			// activate just clicked button
+			$allButtons.removeClass( 'activated' );
 			$btn.addClass( 'activated' );
 			// set bubble text, check box and set check box change handler
 			$( 'label', $bubble).html( bubbleText.replace( /%s/g,  $btn.data( 'key' ) ) );
