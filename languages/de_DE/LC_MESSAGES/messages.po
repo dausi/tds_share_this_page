@@ -1,100 +1,108 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: tds_share_this_page 0.9.4\n"
+"Project-Id-Version: tds_share_this_page 0.9.5\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2018-10-15T21:01:29+02:00\n"
-"PO-Revision-Date: 2018-10-15 21:02+0200\n"
+"POT-Creation-Date: 2018-10-25T14:30:49+02:00\n"
+"PO-Revision-Date: 2018-10-25 14:32+0200\n"
 "Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 2.2\n"
 
-#: packages/tds_share_this_page/controller.php:30
+#: packages/tds_share_this_page/controller.php:28
 msgid "TDS Social Media \"Share this page\" Icons (EU-GDPR compliant)"
 msgstr "TDS Social Media \"Teile diese Seite\" Symbole (EU-DSGVO-konform)"
 
-#: packages/tds_share_this_page/controller.php:35
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:49
+#: packages/tds_share_this_page/controller.php:33
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:38
 msgid "Add EU-GDPR compliant social media \"Share this page\" icons on your pages."
 msgstr "Fügen Sie EU-DSGVO-konforme Social-Media \"Teile diese Seite\"-Symbole auf Ihren Seiten hinzu."
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:54
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:43
 msgid "TDS Social Media Share Icons"
 msgstr "TDS Social-Media-\"Teilen\"-Symbole"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:70
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:62
 msgid "a new window or tab"
 msgstr "einem neuen Fenster oder Tab"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:71
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:63
 msgid "the same frame as it was clicked (this is default)"
 msgstr "gleichen Fenster (Standard)"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:72
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:64
 msgid "the parent frame"
 msgstr "Eltern-Frame"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:73
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:65
 msgid "the full body of the window"
 msgstr "dem vollen Textkörper"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:76
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:68
 msgid "left"
 msgstr "links"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:77
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:69
 msgid "right"
 msgstr "rechts"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:80
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:72
 msgid "logo"
 msgstr "wie Logo"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:81
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:73
 msgid "logo inverse"
 msgstr "Logo Invers"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:82
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:74
 msgid "color"
 msgstr "Farbe"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:83
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:75
 msgid "color inverse"
 msgstr "Farbe Invers"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:85
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:77
 msgid "Share this page at %s"
 msgstr "Diese Seite bei %s teilen"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:86
-msgid "You now have enabled the button to share this page at \"%s\"."
-msgstr "Sie haben jetzt das Symbol aktiviert, um diese Seite bei \"%s\" zu teilen. Das nächste Mal, wenn Sie auf das Symbol klicken, wird die Seite bei \"%s\" geöffnet. Beim Öffnen werden persönliche Browserdaten an den Provider \"%s\" übermittelt. Um dies zu vermeiden, können Sie das Kästchen links (und das aktivierte Symbol) deaktivieren."
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:78
+msgid "You now have enabled the button to share this page at \"%s\". Next time you click at the button the page at \"%s\" shall be opened. On opening your personal browser data is transmitted to the provider \"%s\". To avoid this you can disable the checkbox at left (and the enabled button)."
+msgstr "Sie haben jetzt das Symbol aktiviert, um diese Seite bei \"%s\" zu teilen. Das nächste Mal, wenn Sie auf das Symbol klicken, wird die Seite bei \"%s\" geöffnet. Beim Öffnen werden Ihre persönlichen Browser-Daten an den Provider \"%s\" übermittelt. Um dies zu vermeiden, können Sie das Kästchen links (und damit auch das aktivierte Symbol) deaktivieren."
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:101
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:93
 msgid "No social media service selected."
 msgstr "Kein Social-Media-Service gewählt."
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:102
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:94
 msgid "Icon spacing \"%s\" is not a valid number"
 msgstr "Wert \"%s\" für Platz zwischen den Symbolen ist keine gültige Zahl"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:167
-msgid "Check out this article on %s:\\n\\n%s\\n%s"
-msgstr "Schauen Sie sich diesen Artikel auf %s an:\\n\\n%s\\n%s"
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:165
+msgid ""
+"Check out this article on %s:\n"
+"\n"
+"%s\n"
+"%s"
+msgstr ""
+"Schauen Sie sich diesen Artikel an auf %s:\n"
+"\n"
+"%s\n"
+"%s"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:168
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:166
 msgid "Please notice this article."
 msgstr "Beachten Sie diesen Artikel."
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:207
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:205
 msgid "Print this page"
 msgstr "Diese Seite drucken"
 
-#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:207
+#: packages/tds_share_this_page/blocks/tds_share_this_page/controller.php:205
 msgid "Share this page by email"
 msgstr "Diese Seite teilen per E-Mail"
 
@@ -184,7 +192,7 @@ msgid "Edit"
 msgstr "Bearbeiten"
 
 #: packages/tds_share_this_page/blocks/tds_share_this_page/form.php:116
-msgid "Buble text on clicking at a social media share icon"
+msgid "Bubble text on clicking at a social media share icon"
 msgstr "Sprechblasen-Text für das Anklicken eines Social-Media-Share-Symbols"
 
 #: packages/tds_share_this_page/blocks/tds_share_this_page/form.php:123

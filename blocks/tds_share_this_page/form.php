@@ -101,7 +101,7 @@ echo '
 		<div class="lineup">',
 			$form->label('titleText',  t('Icon hover title')),'
 			<i class="fa fa-question-circle launch-tooltip" title="" data-original-title="',
-										h(t('The expression "%s" is replaced by the social service name.')). '"></i>
+										h(t('The expression "%s" is replaced by the social service name.', '%s')). '"></i>
 		</div>',
 		$form->text('titleText', $titleText),'
 
@@ -113,9 +113,9 @@ echo '
 				<button type="button" class="btn pull-right btn-primary edit">', t('Edit') ,'</button>
 				<div class="input-group hidden">
 					<div class="lineup">
-						<label class="control-label">', t('Buble text on clicking at a social media share icon'). '</label>
+						<label class="control-label">', t('Bubble text on clicking at a social media share icon'). '</label>
 						<i class="fa fa-question-circle launch-tooltip" title="" data-original-title="',
-											h(t('The expression "%s" is replaced by the social service name.')). '"></i>
+											h(t('The expression "%s" is replaced by the social service name.', '%s')). '"></i>
 					</div>
 					<div class="ta">',
 						$form->textarea('bubbleText', $bubbleText), '

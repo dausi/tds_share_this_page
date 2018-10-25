@@ -109,11 +109,13 @@ class Controller extends BlockController
 		$this->setupMediaList();
     	$this->set('mediaList', $this->mediaList);
 		$this->set('bUID', $this->app->make('helper/validation/identifier')->getString(8));
-		
-		$this->requireAsset('font-awesome');
-	    $this->requireAsset('javascript', 'jquery');
 	}
 
+	public function registerViewAssets($outputContent = '')
+	{
+		$this->requireAsset('font-awesome');
+		$this->requireAsset('javascript', 'jquery');
+	}
 	public function save($args)
     {
     	$args['iconSize']	= intval($args['iconSize']);
