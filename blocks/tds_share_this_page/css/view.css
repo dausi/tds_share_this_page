@@ -71,17 +71,33 @@
 	border-color: white white transparent transparent;
 	margin-left: 3px;
 }
-.ccm-block-share-this-page .speech-bubble input[type=checkbox] {
-	cursor: pointer;
-	float: left;
+.ccm-block-share-this-page .speech-bubble button,
+.ccm-block-share-this-page .speech-bubble button:focus {
+	background: none;
+	border: none;
+	outline: none;
+}
+.ccm-block-share-this-page .speech-bubble button {
+	float: right;
+	padding-left: 10px;
+	position: relative;
+	right: -6px;
+	top: -8px;
+}
+.ccm-block-share-this-page .speech-bubble button i {
+	color: initial;
+	transform: rotate(45deg);
 }
 .ccm-block-share-this-page .speech-bubble label {
-    cursor: pointer;
     display: block;
     font-size: 12px;
     font-weight: inherit;
     line-height: initial;
-    margin-left: 20px;
+    margin: 0;
+}
+.ccm-block-share-this-page .speech-bubble label i.fa-plus {
+	font-size: 1.3em;
     position: relative;
-    top: 2px;
+    top: 1px;
+	transform: rotate(45deg);
 }

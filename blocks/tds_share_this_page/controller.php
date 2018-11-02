@@ -40,7 +40,7 @@ class Controller extends BlockController
 
     public function getBlockTypeName()
     {
-        return t('TDS Social Media Share Icons');
+        return t('"Share" Links');
     }
 
     public function add()
@@ -75,10 +75,11 @@ class Controller extends BlockController
 			'color-inverse'	=> t('color inverse')
 		]);
 		$this->set('titleTextTemplate', t('Share this page at %s'));
-		$this->set('bubbleTextTemplate', t('You now have enabled the button to share this page at "%s".'.
-									' Next time you click at the button the page at "%s" shall be opened.'.
+		$this->set('bubbleTextTemplate', t('You now have enabled the icon to share this page at "%s".'.
+									' If you now click at the activated icon the page at "%s" shall be opened.'.
 									' On opening your personal browser data is transmitted to the provider "%s".'.
-									' To avoid this you can disable the checkbox at left (and the enabled button).'));
+									' To avoid this you can click at the close <strong>X</strong> button'.
+                                    ' and by this disable the share icon.'));
 
 		$al = AssetList::getInstance();
 		$ph = 'tds_share_this_page';

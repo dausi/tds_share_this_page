@@ -15,9 +15,9 @@ foreach ($this->controller->getMediaList() as $key => $props)
 }
 ?>
 		<div class="speech-bubble">
-			<input type="checkbox" checked="checked" id="bubble-<?php echo $bUID ?>">
-			<label for="bubble-<?php echo $bUID ?>">
-			</label>
+            <button title="<?php echo h(t('Close bubble text and deactivate icon')) ?>" 
+                    aria-label="<?php echo h(t('Close')) ?>"><i class="fa fa-plus"></i></button>
+			<label></label>
 			<span class="arrow"></span><span class="arrow-inner"></span>
 		</div>
 	</div>
@@ -26,7 +26,8 @@ foreach ($this->controller->getMediaList() as $key => $props)
 (function($) {
 	var $allButtons = $( '.ccm-block-share-this-page.block-<?php echo $bUID ?> .svc span' );
 	var $bubble = $( '.ccm-block-share-this-page.block-<?php echo $bUID ?> .speech-bubble' );
-	var bubbleText = '<?php echo h($bubbleText) ?>';
+	var bubbleText = '<?php echo h($bubbleText) ?>'.replace(/\&lt;strong\&gt;\s*X\s*\&lt;\/strong\&gt;/, 
+                                                                                    '<i class="fa fa-plus"></i>');
 	var button_activated = false;
 	/*
 	 * close all buttons handler
@@ -57,7 +58,7 @@ foreach ($this->controller->getMediaList() as $key => $props)
 			$bubble.hide();
 			button_activated = false;
 		} else if ( $btn.hasClass( 'activated' ) ) {
-			if ( $( 'input', $bubble ).prop( 'checked' ) )
+			if ( $( ':visible', $bubble ).length > 0 )
 				window.open( $btn.data( 'href' ), $btn.data( 'target' ) );
 			$allButtons.removeClass( 'activated' );
 			$bubble.hide();
@@ -68,12 +69,10 @@ foreach ($this->controller->getMediaList() as $key => $props)
 			$btn.addClass( 'activated' );
 			// set bubble text, check box and set check box change handler
 			$( 'label', $bubble).html( bubbleText.replace( /%s/g,  $btn.data( 'key' ) ) );
-			$( 'input', $bubble )
-				.prop( 'checked', true )
-				.change( function() {
-					$btn.removeClass( 'activated' );
-					$bubble.hide();
-				});
+			$( 'button', $bubble ).click( function() {
+                $btn.removeClass( 'activated' );
+                $bubble.hide();
+            });
 			// reset bubble arrow class
 			var arrow = [ 'left', 'center', 'right' ];
 			for (var i = 0; i < arrow.length; i++)
