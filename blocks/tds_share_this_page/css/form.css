@@ -1,14 +1,15 @@
 @CHARSET "ISO-8859-1";
-div.ccm-block-share-this-page ul.nav-tabs {
+.ccm-block-share-this-page ul.nav-tabs {
 	padding-top: 10px;
 }
-div.ccm-block-share-this-page .ccm-tab-content {
+.ccm-block-share-this-page .ccm-tab-content {
     padding-top: 10px;
 }
-.form-group.half {
+div.ui-dialog .ccm-block-share-this-page .form-group.half {
+	margin: 0 0 30px;
+	padding: 0;
 	width: calc(50% - 15px);
 }
-
 .ccm-block-share-this-page ul#sortable {
 	margin: 0;
 	padding: 0;
@@ -119,18 +120,18 @@ div.ccm-block-share-this-page .ccm-tab-content {
 	padding: 0;
 	width: calc(50% - 15px);
 }
-#ccm-tab-content-colorstyle.ccm-block-share-this-page  ul {
+#ccm-tab-content-colorstyle.ccm-block-share-this-page ul {
 	background-color: #f8f8f8;
-	height: 440px;
+	height: 100%;
 	padding: 0;
 }
-#ccm-tab-content-colorstyle.ccm-block-share-this-page  li.icon-box {
+#ccm-tab-content-colorstyle.ccm-block-share-this-page li.icon-box {
 	list-style-image: none;
 	display: block;
 }
-#icon-set-container.ccm-block-share-this-page  {
+#icon-set-container.ccm-block-share-this-page {
 	padding-right: 8px;
 }
-#icon-preview-container.ccm-block-share-this-page  {
+#icon-preview-container.ccm-block-share-this-page {
 	padding-left: 8px;
 }
