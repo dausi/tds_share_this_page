@@ -1,5 +1,6 @@
 .ccm-block-share-this-page div.icon-container {
 	display: flex;
+	flex-wrap: wrap;
 	position: relative;
 }
 .ccm-block-share-this-page div.icon-container.left-align {
@@ -81,12 +82,12 @@
 	float: right;
 	padding-left: 10px;
 	position: relative;
-	right: -6px;
-	top: -8px;
+	right: -10px;
+	top: -7px;
 }
 .ccm-block-share-this-page .speech-bubble button i {
 	color: initial;
-	transform: rotate(45deg);
+	font-size: 35px;
 }
 .ccm-block-share-this-page .speech-bubble label {
     display: block;
@@ -95,9 +96,8 @@
     line-height: initial;
     margin: 0;
 }
-.ccm-block-share-this-page .speech-bubble label i.fa-plus {
+.ccm-block-share-this-page .speech-bubble label i.fa-times {
 	font-size: 1.3em;
     position: relative;
     top: 1px;
-	transform: rotate(45deg);
 }

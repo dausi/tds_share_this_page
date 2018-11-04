@@ -16,7 +16,7 @@ foreach ($this->controller->getMediaList() as $key => $props)
 ?>
 		<div class="speech-bubble">
             <button title="<?php echo h(t('Close bubble text and deactivate icon')) ?>" 
-                    aria-label="<?php echo h(t('Close')) ?>"><i class="fa fa-plus"></i></button>
+                    aria-label="<?php echo h(t('Close')) ?>"><i class="fa fa-times-circle-o"></i></button>
 			<label></label>
 			<span class="arrow"></span><span class="arrow-inner"></span>
 		</div>
@@ -26,9 +26,10 @@ foreach ($this->controller->getMediaList() as $key => $props)
 (function($) {
 	var $allButtons = $( '.ccm-block-share-this-page.block-<?php echo $bUID ?> .svc span' );
 	var $bubble = $( '.ccm-block-share-this-page.block-<?php echo $bUID ?> .speech-bubble' );
-	var bubbleText = '<?php echo h($bubbleText) ?>'.replace(/\&lt;strong\&gt;\s*X\s*\&lt;\/strong\&gt;/, 
-                                                                                    '<i class="fa fa-plus"></i>');
-	var button_activated = false;
+	var bubbleText = '<?php echo h($bubbleText) ?>'.replace(/\&lt;strong\&gt;\s*X\s*\&lt;\/strong\&gt;/i, 
+                                                                                    '<i class="fa fa-times"></i>');
+	var $btn = null;
+    var button_activated = false;
 	/*
 	 * close all buttons handler
 	 * 
@@ -44,6 +45,62 @@ foreach ($this->controller->getMediaList() as $key => $props)
 	$( $bubble ).click( function( e ) {
 		e.stopPropagation();
 	});
+    /*
+     * set position of bubble (and arrow)
+     * 
+     * @returns {Boolean}
+     */
+    var bubblePos = function() {
+        // reset bubble arrow class
+        var arrow = [ 'left', 'center', 'right' ];
+        for (var i = 0; i < arrow.length; i++)
+            $bubble.removeClass( arrow[i] );
+        // get horizontal bubble position
+        var docWidth = $(document).outerWidth(true);
+        var $iCont = $btn.parents( '.icon-container' );
+        var bubblePos = $iCont.find( '.svc:first-child' ).offset();
+        var bbLeft = bubblePos.left;
+        if ( bbLeft + 310 > docWidth )
+            bbLeft = docWidth - 310;
+        // determine arrow position and arrow class
+        var width = $btn.innerWidth();
+        var arrowOffs = $btn.offset().left - bbLeft;
+        var i = 0;
+        while ( i * 100 <= arrowOffs ) {
+            i++;
+        }
+        i = (i > 3) ? 3 : i;
+        if ( arrowOffs > 260 ) {
+            var delta = arrowOffs - 260;
+            bbLeft += delta;
+            arrowOffs -= delta;
+        }
+        // set/show bubble and arrow
+        $bubble
+            .addClass( arrow[ i - 1 ] )
+            .css({
+                'top': ( -1 * ( bubblePos.top - $btn.offset().top + $bubble.outerHeight()
+                                - parseInt( $iCont.css( 'paddingTop' )) + 32 - 8 ) ) + 'px',
+                'left': ( bbLeft - $iCont.offset().left ) + 'px'
+            })
+            .show();
+        switch ( i ) {
+            case 1:
+                arrowOffs += width - 8;
+                break;
+            case 2:
+                arrowOffs += width / 2  - 12;
+                break;
+            case 3:
+                arrowOffs += - 24 + 8;
+                break;
+        }
+        $( 'span', $bubble ).css({
+            'left': arrowOffs + 'px'
+        });
+        return true;
+    };
+	$(window).resize(bubblePos);
 	/*
 	 * button click handler
 	 * 
@@ -51,7 +108,7 @@ foreach ($this->controller->getMediaList() as $key => $props)
 	 */
 	$allButtons.click( function( e ) {
 		e.stopPropagation();
-		var $btn = $( this );
+		$btn = $( this );
 		if ( $btn.hasClass( 'local' ) ) {
 			window.open( $btn.data( 'href' ), '_self' );
 			$allButtons.removeClass( 'activated' );
@@ -73,54 +130,7 @@ foreach ($this->controller->getMediaList() as $key => $props)
                 $btn.removeClass( 'activated' );
                 $bubble.hide();
             });
-			// reset bubble arrow class
-			var arrow = [ 'left', 'center', 'right' ];
-			for (var i = 0; i < arrow.length; i++)
-				$bubble.removeClass( arrow[i] );
-			// get horizontal bubble position
-			var docWidth = $(document).outerWidth(true);
-			var $iCont = $btn.parents( '.icon-container' );
-			var bubblePos = $iCont.find( '.svc:first-child' ).offset();
-			var bbLeft = bubblePos.left;
-			if ( bbLeft + 310 > docWidth )
-				bbLeft = docWidth - 310;
-			// determine arrow position and arrow class
-			var width = $btn.innerWidth();
-			var arrowOffs = $btn.offset().left - bbLeft;
-			var i = 0;
-			while ( i * 100 <= arrowOffs ) {
-				i++;
-			}
-			i = (i > 3) ? 3 : i;
-			if ( arrowOffs > 260 ) {
-				var delta = arrowOffs - 260;
-				bbLeft += delta;
-				arrowOffs -= delta;
-			}
-			// set/show bubble and arrow
-			$bubble
-				.addClass( arrow[ i - 1 ] )
-				.css({
-					'top': ( ( $bubble.outerHeight()
-							 - parseInt( $iCont.css( 'paddingTop' )) + 32 - 8 ) * -1 ) + 'px',
-					'left': ( bbLeft - $iCont.offset().left ) + 'px'
-				})
-				.show();
-			switch ( i ) {
-				case 1:
-					arrowOffs += width - 8;
-					break;
-				case 2:
-					arrowOffs += width / 2  - 12;
-					break;
-				case 3:
-					arrowOffs += - 24 + 8;
-					break;
-			}
-			$( 'span', $bubble ).css({
-				'left': arrowOffs + 'px'
-			});
-			button_activated = true;
+            button_activated = bubblePos();
 		}
 	});
 	
