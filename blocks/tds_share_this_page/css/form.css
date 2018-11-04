@@ -6,7 +6,7 @@ div.ccm-block-share-this-page .ccm-tab-content {
     padding-top: 10px;
 }
 .form-group.half {
-	width: calc(50% + 42px);
+	width: calc(50% - 15px);
 }
 
 .ccm-block-share-this-page ul#sortable {
@@ -90,12 +90,11 @@ div.ccm-block-share-this-page .ccm-tab-content {
 	left: 8px;
 	visibility: visible;
 }
-
-.ccm-block-share-this-page button.edit {
-	width: 100%;
-}
 .ccm-block-share-this-page .bubbletext {
 	position: relative;
+}
+.ccm-block-share-this-page .bubbletext button.edit {
+	width: 100%;
 }
 .ccm-block-share-this-page .bubbletext .input-group {
 	background: #eaf7ff;
@@ -114,16 +113,11 @@ div.ccm-block-share-this-page .ccm-tab-content {
 .ccm-block-share-this-page .bubbletext .input-group textarea {
 	height: 200px;
 }
-.ccm-block-share-this-page div.ui-dialog .ui-dialog-content div.form-group {
-	/* for c5-5.7 */
-	padding-left: 26px;
-	padding-right: 26px;
-	margin-left: -26px;
-	margin-right: -26px;
-}
 #ccm-tab-content-colorstyle.ccm-block-share-this-page div.form-group {
 	height: 100%;
-	width: calc(50% + 21px);
+	margin: 0;
+	padding: 0;
+	width: calc(50% - 15px);
 }
 #ccm-tab-content-colorstyle.ccm-block-share-this-page  ul {
 	background-color: #f8f8f8;
