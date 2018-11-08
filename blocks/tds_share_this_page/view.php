@@ -48,58 +48,57 @@ foreach ($this->controller->getMediaList() as $key => $props)
         });
         /*
          * set position of bubble (and arrow)
-         * 
-         * @returns {Boolean}
          */
         var showBubble = function() {
-            // reset bubble arrow class
-            var arrow = [ 'left', 'center', 'right' ];
-            for (var i = 0; i < arrow.length; i++)
-                $bubble.removeClass( arrow[i] );
-            // get horizontal bubble position
-            var docWidth = $(document).outerWidth(true);
-            var $iCont = $btn.parents( '.icon-container' );
-            var bubblePos = $iCont.find( '.svc:first-child' ).offset();
-            var bbLeft = bubblePos.left;
-            if ( bbLeft + 310 > docWidth )
-                bbLeft = docWidth - 310;
-            // determine arrow position and arrow class
-            var width = $btn.innerWidth();
-            var arrowOffs = $btn.offset().left - bbLeft;
-            var i = 0;
-            while ( i * 100 <= arrowOffs ) {
-                i++;
+            if ( button_activated ) {
+                // reset bubble arrow class
+                var arrow = [ 'left', 'center', 'right' ];
+                for (var i = 0; i < arrow.length; i++)
+                    $bubble.removeClass( arrow[i] );
+                // get horizontal bubble position
+                var docWidth = $(document).outerWidth(true);
+                var $iCont = $btn.parents( '.icon-container' );
+                var bubblePos = $iCont.find( '.svc:first-child' ).offset();
+                var bbLeft = bubblePos.left;
+                if ( bbLeft + 310 > docWidth )
+                    bbLeft = docWidth - 310;
+                // determine arrow position and arrow class
+                var width = $btn.innerWidth();
+                var arrowOffs = $btn.offset().left - bbLeft;
+                var i = 0;
+                while ( i * 100 <= arrowOffs ) {
+                    i++;
+                }
+                i = (i > 3) ? 3 : i;
+                if ( arrowOffs > 260 ) {
+                    var delta = arrowOffs - 260;
+                    bbLeft += delta;
+                    arrowOffs -= delta;
+                }
+                // set/show bubble and arrow
+                $bubble
+                    .addClass( arrow[ i - 1 ] )
+                    .css({
+                        'top': ( -1 * ( bubblePos.top - $btn.offset().top + $bubble.outerHeight()
+                                        - parseInt( $iCont.css( 'paddingTop' )) + 32 - 8 ) ) + 'px',
+                        'left': ( bbLeft - $iCont.offset().left ) + 'px'
+                    })
+                    .show();
+                switch ( i ) {
+                    case 1:
+                        arrowOffs += width - 8;
+                        break;
+                    case 2:
+                        arrowOffs += width / 2  - 12;
+                        break;
+                    case 3:
+                        arrowOffs += - 24 + 8;
+                        break;
+                }
+                $( 'span', $bubble ).css({
+                    'left': arrowOffs + 'px'
+                });
             }
-            i = (i > 3) ? 3 : i;
-            if ( arrowOffs > 260 ) {
-                var delta = arrowOffs - 260;
-                bbLeft += delta;
-                arrowOffs -= delta;
-            }
-            // set/show bubble and arrow
-            $bubble
-                .addClass( arrow[ i - 1 ] )
-                .css({
-                    'top': ( -1 * ( bubblePos.top - $btn.offset().top + $bubble.outerHeight()
-                                    - parseInt( $iCont.css( 'paddingTop' )) + 32 - 8 ) ) + 'px',
-                    'left': ( bbLeft - $iCont.offset().left ) + 'px'
-                })
-                .show();
-            switch ( i ) {
-                case 1:
-                    arrowOffs += width - 8;
-                    break;
-                case 2:
-                    arrowOffs += width / 2  - 12;
-                    break;
-                case 3:
-                    arrowOffs += - 24 + 8;
-                    break;
-            }
-            $( 'span', $bubble ).css({
-                'left': arrowOffs + 'px'
-            });
-            return true;
         };
         $(window).resize(showBubble);
         /*
@@ -131,7 +130,8 @@ foreach ($this->controller->getMediaList() as $key => $props)
                     $btn.removeClass( 'activated' );
                     $bubble.hide();
                 });
-                button_activated = showBubble();
+                button_activated = true;
+                showBubble();
             }
         });
     });
