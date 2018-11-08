@@ -168,15 +168,16 @@ class Controller extends BlockController
 
     	$mediaListMaster = [
 	    	//	name			 fa-					icon color				share address
-	    	'Facebook'		=> [ 'fa' => 'facebook',	'icolor' => '#3B5998',	'sa' => "https://www.facebook.com/sharer/sharer.php?u=$url"		],
+	    	'Facebook'		=> [ 'fa' => 'facebook',	'icolor' => '#3B5998',	'sa' => "https://www.facebook.com/sharer/sharer.php?u=$url"     		],
 	    	'Linkedin'		=> [ 'fa' => 'linkedin',	'icolor' => '#007BB6',	
-												'sa' => "https://www.linkedin.com/shareArticle?mini-true&url={$url}&title=".urlencode($title)	],
-	    	'Pinterest'		=> [ 'fa' => 'pinterest-p',	'icolor' => '#CB2027',	'sa' => "https://www.pinterest.com/pin/create/button?url=$url"	],
-			'Reddit'		=> [ 'fa' => 'reddit',		'icolor' => '#FF4500',	'sa' => "https://www.reddit.com/submit?url={$url}"				],
-	    	'Twitter'		=> [ 'fa' => 'twitter',		'icolor' => '#55ACEE',	'sa' => "https://twitter.com/intent/tweet?url=$url"				],
-			'Xing'			=> [ 'fa' => 'xing',		'icolor' => '#006567',	'sa' => "https://www.xing.com/spi/shares/new?url={$url}"		],
-			'Print'			=> [ 'fa' => 'print',		'icolor' => '#696969',	'sa' => 'javascript:window.print();'							],
-			'Mail'			=> [ 'fa' => 'envelope',	'icolor' => '#696969',	'sa' => "mailto:?body={$body}&subject={$subject}"				],
+                                                        'sa' => "https://www.linkedin.com/shareArticle?mini-true&url={$url}&title=".urlencode($title)   ],
+	    	'Pinterest'		=> [ 'fa' => 'pinterest-p',	'icolor' => '#CB2027',	'sa' => "https://www.pinterest.com/pin/create/button?url=$url"          ],
+			'Reddit'		=> [ 'fa' => 'reddit',		'icolor' => '#FF4500',	'sa' => "https://www.reddit.com/submit?url={$url}"                      ],
+	    	'Twitter'		=> [ 'fa' => 'twitter',		'icolor' => '#55ACEE',	'sa' => "https://twitter.com/intent/tweet?url=$url"                     ],
+            'VK'            => [ 'fa' => 'vk',          'icolor' => '#4E76A7',  'sa' => "http://vk.com/share.php?url={$url}&title=".urlencode($title)   ],
+			'Xing'			=> [ 'fa' => 'xing',		'icolor' => '#006567',	'sa' => "https://www.xing.com/spi/shares/new?url={$url}"                ],
+			'Print'			=> [ 'fa' => 'print',		'icolor' => '#696969',	'sa' => 'javascript:window.print();'                            		],
+			'Mail'			=> [ 'fa' => 'envelope',	'icolor' => '#696969',	'sa' => "mailto:?body={$body}&subject={$subject}"                       ],
     	];
 
     	if (version_compare(APP_VERSION, '8.0', '<'))
