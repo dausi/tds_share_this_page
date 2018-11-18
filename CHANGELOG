@@ -10,3 +10,4 @@ current releases:
 0.9.7 - bubble text close button introduced (thanks for okapi's feedback)
 0.9.8 - bubble sticks to icon on window resize, if applicable
 0.9.9 - VK (https://vk.com) added
+1.0.0 - bug on resize fixed

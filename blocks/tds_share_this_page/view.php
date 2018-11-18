@@ -30,17 +30,15 @@ foreach ($this->controller->getMediaList() as $key => $props)
         var bubbleText = '<?php echo h($bubbleText) ?>'.replace(/\&lt;strong\&gt;\s*X\s*\&lt;\/strong\&gt;/i, 
                                                                                         '<i class="fa fa-times"></i>');
         var $btn = null;
-        var button_activated = false;
         /*
          * close all buttons handler
          * 
          * @returns {undefined}
          */
-        $( 'body' ).click( function() {
-            if ( button_activated ) {
+        $( 'html' ).click( function() {
+            if ( $allButtons.hasClass('activated') ) {
                 $allButtons.removeClass( 'activated' );
                 $bubble.hide();
-                button_activated = false;
             }
         });
         $( $bubble ).click( function( e ) {
@@ -50,7 +48,7 @@ foreach ($this->controller->getMediaList() as $key => $props)
          * set position of bubble (and arrow)
          */
         var showBubble = function() {
-            if ( button_activated ) {
+            if ( $allButtons.hasClass('activated') ) {
                 // reset bubble arrow class
                 var arrow = [ 'left', 'center', 'right' ];
                 for (var i = 0; i < arrow.length; i++)
@@ -113,13 +111,11 @@ foreach ($this->controller->getMediaList() as $key => $props)
                 window.open( $btn.data( 'href' ), '_self' );
                 $allButtons.removeClass( 'activated' );
                 $bubble.hide();
-                button_activated = false;
             } else if ( $btn.hasClass( 'activated' ) ) {
                 if ( $( ':visible', $bubble ).length > 0 )
                     window.open( $btn.data( 'href' ), $btn.data( 'target' ) );
                 $allButtons.removeClass( 'activated' );
                 $bubble.hide();
-                button_activated = false;
             } else {
                 // activate just clicked button
                 $allButtons.removeClass( 'activated' );
@@ -130,7 +126,6 @@ foreach ($this->controller->getMediaList() as $key => $props)
                     $btn.removeClass( 'activated' );
                     $bubble.hide();
                 });
-                button_activated = true;
                 showBubble();
             }
         });
